@@ -4,7 +4,6 @@
     "config:best-practices",
     ":dependencyDashboard",
     ":separateMultipleMajorReleases",
-    "schedule:weekly",
     ":timezone(Europe/Paris)"
   ],
   "minimumReleaseAge": "7 days",
@@ -14,42 +13,71 @@
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true,
-    "schedule": ["before 6am on monday"]
+    "schedule": [
+      "on monday"
+    ]
   },
-  "vulnerabilityAlerts": { "enabled": false },
+  "vulnerabilityAlerts": {
+    "enabled": false
+  },
   "packageRules": [
     {
       "description": "Automerge patch des deps de prod (hors 0.x)",
-      "matchUpdateTypes": ["patch"],
+      "matchUpdateTypes": [
+        "patch"
+      ],
       "matchCurrentVersion": "!/^0/",
       "automerge": true
     },
     {
       "description": "Automerge minor+patch des devDependencies",
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "automerge": true
     },
     {
       "description": "Majeures : approbation via le Dependency Dashboard",
-      "matchUpdateTypes": ["major"],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "dependencyDashboardApproval": true,
-      "labels": ["major"]
+      "labels": [
+        "major"
+      ]
     },
     {
       "description": "Coeur framework : jamais d automerge",
-      "matchPackageNames": ["next", "react", "react-dom", "prisma", "@prisma/client"],
+      "matchPackageNames": [
+        "next",
+        "react",
+        "react-dom",
+        "prisma",
+        "@prisma/client"
+      ],
       "automerge": false
     },
     {
       "description": "Groupe NestJS",
-      "matchPackageNames": ["@nestjs/**"],
+      "matchPackageNames": [
+        "@nestjs/**"
+      ],
       "groupName": "NestJS"
     },
     {
       "description": "Groupe Prisma",
-      "matchPackageNames": ["prisma", "@prisma/client"],
+      "matchPackageNames": [
+        "prisma",
+        "@prisma/client"
+      ],
       "groupName": "Prisma"
     }
+  ],
+  "schedule": [
+    "on monday"
   ]
 }
